@@ -1,0 +1,132 @@
+<template>
+  <div class='movieDetail'>
+    <top-header></top-header>
+    <div class="main">
+      <div class="movieAbout">
+        <div class="mes">
+          <h1>{{currentMovie.title}}</h1>
+          <star :average="currentMovie.rating.average" :length="0.3"></star>
+          <span class="average">{{currentMovie.rating.average}}</span>
+          <span class="commentCount">{{currentMovie.ratings_count}}人评论</span>
+          <p class="keys">{{keys}}</p>
+        </div>
+        <div class="img">
+          <img :src="this.currentMovie.images.large" alt="暂无封面">
+        </div>
+      </div>
+      <div class="movieIntro">
+        <h4 class="title">{{this.currentMovie.title}}剧情的简介</h4>
+        <p class="content">{{this.currentMovie.summary}}</p>
+      </div>
+      <div class="movieTags">
+        <p class="title">查看更多</p>
+        <tag v-for="tag in this.currentMovie.tags" :tag="tag"></tag>
+      </div>
+      <div class="workers">
+        <p class="title">{{this.currentMovie.title}}的导演和主演</p>
+        <worker v-for="director in currentMovie.directors" :worker="director" class="director"></worker>
+        <worker v-for="cast in currentMovie.casts" :worker="cast" class="avatar"></worker>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { mapState } from 'vuex'
+  import TopHeader from './Common/topHeader'
+  import Star from './Common/star'
+  import Tag from './Common/tag'
+  import Worker from './Common/worker'
+
+  export default {
+    name: 'movieDetail',
+
+    components: {
+      TopHeader,
+      Star,
+      Tag,
+      Worker
+    },
+
+    computed: mapState({
+      currentMovie (state) {
+        console.log(state.movieDetail.currentMovie)
+        return state.movieDetail.currentMovie
+      },
+      movieId () {
+        return this.$route.params.movieId
+      },
+      keys () {
+        function mystr (arr, name) {
+          var str = ''
+          for (var i = 0; i < arr.length; i++) {
+            if (str !== '') str += '/'
+            str = str + arr[i][name]
+          }
+          return str
+        }
+
+        var str = this.currentMovie.genres.join('/') + '/' +
+          mystr(this.currentMovie.directors, 'name') + '/' +
+          mystr(this.currentMovie.casts, 'name') + '/' +
+          this.currentMovie.year + '年' + '(' +
+          this.currentMovie.countries.join(',') + ')' + '上映'
+        return str
+      }
+    })
+  }
+</script>
+<style scoped>
+  .main {
+    padding: 0.74rem 0.4rem 0 0.4rem;
+  }
+  h1 {
+    color: black;
+    font-size: 0.45rem;
+  }
+  .movieAbout {
+    padding-top: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+  }
+  .average {
+    font-size: 0.3rem;
+    font-weight: bold;
+  }
+  .commentCount {
+    font-size: 0.3rem;
+    color: #bbbbbb;
+    font-weight: bold;
+  }
+  .mes {
+    display: inline-block;
+    width: 4rem;
+    font-size: 0.3rem;
+  }
+  .img {
+    display: inline-block;
+  }
+  .img img {
+    width: 2rem;
+  }
+  .movieIntro{
+    font-size: 0.3rem;
+  }
+  .title{
+    font-size: 0.3rem;
+    color: #bbbbbb;
+    margin: 0.3rem 0;
+    font-weight: bold;
+    text-align: left;
+  }
+  .movieTags{
+    margin: 0 auto;
+  }
+  .workers{
+    white-space: nowrap;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+</style>

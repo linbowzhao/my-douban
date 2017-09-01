@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" style="font-size: 50px">
+<head>
+  <meta charset="UTF-8">
+  <title>豆瓣电影</title>
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=2.0,minimum-scale=0.5,user-scalable=yes">
+  <link rel="shortcut icon" type="image/x-icon" href="https://img3.doubanio.com/pics/douban-icons/favicon_48x48.png"
+        media="screen"/>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  (function (doc, win) {
+    // 获取页面所有html代码字符串
+    var docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        var clientWidth = docEl.clientWidth > 750 ? 360 : docEl.clientWidth
+        if (!clientWidth) return
+        docEl.style.fontSize = clientWidth / 750 * 100 + 'px'
+      }
+    if (!doc.addEventListener) return
+    doc.addEventListener('DOMContentLoaded', recalc, false)
+    if (docEl.clientWidth > 750) return
+    win.addEventListener(resizeEvt, recalc, false)
+  }(document, window))
+</script>
+</body>
+</html>
