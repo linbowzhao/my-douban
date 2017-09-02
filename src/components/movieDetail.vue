@@ -31,6 +31,10 @@
       <div class="foresee">
         <img v-for="trailer in currentMovie.trailers" :src="trailer.medium" alt="电影图片">
       </div>
+      <h4 class="title">{{currentMovie.title}}的短评({{comments.total}})</h4>
+      <div class="comment">
+        <comment v-for="comment in comments.comments" :comment="comment"></comment>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +45,7 @@
   import Star from './Common/star'
   import Tag from './Common/tag'
   import Worker from './Common/worker'
+  import Comment from './common/comment'
 
   export default {
     name: 'movieDetail',
@@ -49,12 +54,16 @@
       TopHeader,
       Star,
       Tag,
-      Worker
+      Worker,
+      Comment
     },
 
     computed: mapState({
       currentMovie (state) {
         return state.movieDetail.currentMovie
+      },
+      comments (state) {
+        return state.movieDetail.comments
       },
       movieId () {
         return this.$route.params.movieId

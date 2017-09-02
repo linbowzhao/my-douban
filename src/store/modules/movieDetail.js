@@ -11,6 +11,9 @@ const actions = {}
 const mutations = {
   [types.CURRENT_MOVIE] (state, currentMovie) {
     state.currentMovie = currentMovie
+  },
+  [types.CURRENT_COMMENTS] (state, comments) {
+    state.comments = comments
   }
 }
 
