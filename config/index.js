@@ -33,7 +33,14 @@ module.exports = {
         changeOrigin: true,
         pathRewrite: {
           '^/v2': '/v2'
-        }
+        },
+      },
+      '/public': {
+        target: 'http://img3.doubanio.com/view/photo/photo',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/public': '/public'
+        },
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

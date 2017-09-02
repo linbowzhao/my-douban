@@ -26,7 +26,7 @@
     margin-right: 0.375rem;
   }
   img{
-    width: 2rem;
+    height: 3rem;
   }
   .name{
     margin-top: 0.3rem;
