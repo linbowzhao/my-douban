@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import myMutations from './mutations'
 import home from './modules/home'
 import movieDetail from './modules/movieDetail'
+import moreMovie from './modules/moreMovie'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
 
   modules: {
     home,
-    movieDetail
+    movieDetail,
+    moreMovie
   }
 })

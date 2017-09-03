@@ -5,7 +5,7 @@
       <h2>
         <span class="title">{{item.title}}</span>
         <span>
-          <router-link :to="`/more/${item.title}`" class="more">更多</router-link>
+          <router-link :to="`/moreMovie/${item.title}`" class="more">更多</router-link>
         </span>
       </h2>
       <div class="movieItems">

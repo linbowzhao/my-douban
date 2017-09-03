@@ -31,6 +31,7 @@ export default {
       weekly(8, 0)
     ]).then((homeData) => {
       // 成功则commit后台接口的数据，并把NET_ERROR的数据置空，并把加载中的状态置为false。
+      console.log(homeData)
       store.commit(types.HOME_DATA, homeData)
       store.commit(types.LOADING_FLAG, false)
       store.commit(types.NET_STATUS, '')

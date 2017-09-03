@@ -8,7 +8,6 @@ export default {
   name: 'movieDetail',
   component: movieDetail,
   beforeEnter: (to, before, next) => {
-    document.title = '电影详情'
     const movieId = to.params.movieId
     if (store.state.movieDetail.currentMovie[movieId]) {
       store.commit(types.LOADING_FLAG, false)
@@ -18,6 +17,7 @@ export default {
     store.commit(types.LOADING_FLAG, true)
     currentMovie(movieId).then((currentMovie) => {
       // 成功则commit后台接口的数据，并把NET_ERROR的数据置空，并把加载中的状态置为false。
+      document.title = currentMovie.title
       console.log(currentMovie)
       store.commit(types.CURRENT_MOVIE, currentMovie)
       return comments(movieId, 5, 0)
