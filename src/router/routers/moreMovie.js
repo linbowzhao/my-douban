@@ -17,7 +17,8 @@ export default {
   beforeEnter: (to, before, next) => {
     var title = to.params.title
     document.title = title
-    if (Object.keys(store.state.home.homeData).length !== 0) {
+    if (Object.keys(store.state.moreMovie.moreCurrentMovie).indexOf(title) !== -1) {
+      console.log(Object.keys(store.state.moreMovie.moreCurrentMovie))
       store.commit(types.LOADING_FLAG, false)
       next()
       return
@@ -43,9 +44,9 @@ export default {
           })
       }
     }
-    currentAjax(title).then((moreMovie) => {
+    currentAjax(title).then((moreCurrentMovie) => {
       // 成功则commit后台接口的数据，并把NET_ERROR的数据置空，并把加载中的状态置为false。
-      store.commit(types.MORE_MOVIE, moreMovie)
+      store.commit(types.MORE_CURRENT_MOVIE, Object.assign({[title]: moreCurrentMovie}, store.state.moreMovie.moreCurrentMovie))
       store.commit(types.LOADING_FLAG, false)
       store.commit(types.NET_STATUS, '')
     }).catch((error) => {

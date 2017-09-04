@@ -23,7 +23,8 @@
 
     computed: mapState({
       moreMovie (state) {
-        return state.moreMovie.moreMovie
+        var title = this.$route.params.title
+        return state.moreMovie.moreCurrentMovie[title]
       }
     })
 
@@ -34,6 +35,7 @@
   .main {
     padding-top: 0.81rem;
   }
+
   .title {
     font-size: 0.4rem;
     color: #bbbbbb;

@@ -9,6 +9,6 @@ export const CURRENT_MOVIE = 'CURRENT_MOVIE'
 // 获取标签页数据
 export const CURRENT_TAG = 'CURRENT_TAG'
 // 首页查看更多
-export const MORE_MOVIE = 'MORE_MOVIE'
+export const MORE_CURRENT_MOVIE = 'MORE_CURRENT_MOVIE'
 // 电影短评列表
 export const CURRENT_COMMENTS = 'CURRENT_COMMENTS'
