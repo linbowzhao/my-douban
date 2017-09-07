@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from './routers/home'
 import movieDetail from './routers/movieDetail'
 import moreMovie from './routers/moreMovie'
+import search from './routers/search'
 import store from '../store'
 import * as types from './../store/mutation-types'
 
@@ -13,7 +14,8 @@ const router = new Router({
   routes: [
     home,
     movieDetail,
-    moreMovie
+    moreMovie,
+    search
   ]
 })
 

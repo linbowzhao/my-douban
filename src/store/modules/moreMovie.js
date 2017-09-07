@@ -35,7 +35,6 @@ const getters = {}
 
 const actions = {
   getMoreData ({commit}, {title, count, start}) {
-    console.log(title + count + start)
     moreAjax(title, count, start).then((moreCurrentMovie) => {
       // 成功则commit后台接口的数据，并把NET_ERROR的数据置空，并把加载中的状态置为false。
       console.log(moreCurrentMovie)

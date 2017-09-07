@@ -12,3 +12,5 @@ export const CURRENT_TAG = 'CURRENT_TAG'
 export const MORE_CURRENT_MOVIE = 'MORE_CURRENT_MOVIE'
 // 电影短评列表
 export const CURRENT_COMMENTS = 'CURRENT_COMMENTS'
+// 搜索数据
+export const SEARCH_DATA = 'SEARCH_DATA'

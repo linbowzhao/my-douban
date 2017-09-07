@@ -42,9 +42,9 @@ export const currentMovie = currentMovieId =>
 // 当前电影短评信息
 export const comments = (currentMovieId, count, start) =>
   Ajax(`${server}/v2/movie/subject/${currentMovieId}/comments?apikey=${apikey}&count=${count}&start=${start}`)
-// 当前电影短评信息
-export const reviews = (currentMovieId, count, start) =>
-  Ajax(`${server}/v2/movie/subject/${currentMovieId}/reviews?apikey=${apikey}&count=${count}&start=${start}`)
+// 搜索电影
+export const search = (query, count, start) =>
+  Ajax(`${server}/v2/movie/search?q=${query}&apikey=${apikey}&count=${count}&start=${start}`)
 // 当前标签详情信息
 export const getTagData = (tag, count, start) =>
   Ajax(`${server}/v2/movie/search?apikey=${apikey}&tag=${tag}&count=${count}&start=${start}`)
