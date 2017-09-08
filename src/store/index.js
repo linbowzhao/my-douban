@@ -5,6 +5,7 @@ import home from './modules/home'
 import movieDetail from './modules/movieDetail'
 import moreMovie from './modules/moreMovie'
 import search from './modules/search'
+import tagList from './modules/tagList'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     home,
     movieDetail,
     moreMovie,
-    search
+    search,
+    tagList
   }
 })

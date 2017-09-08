@@ -1,32 +1,32 @@
-import searchList from '../../components/search'
+import tagList from '../../components/tagList'
 import store from '../../store'
 import * as types from '../../store/mutation-types'
-import { search } from '../server'
+import { getTagData } from '../server'
 
 export default {
-  path: '/search/:query',
-  name: 'search',
-  component: searchList,
+  path: '/tagList/:tag',
+  name: 'tagList',
+  component: tagList,
   beforeEnter: (to, before, next) => {
-    var query = to.params.query
-    document.title = query + '-电影'
-    if (store.state.search.searchData[query]) {
+    var tag = to.params.tag
+    document.title = tag + '-电影'
+    if (store.state.tagList.tagData[tag]) {
       store.commit(types.LOADING_FLAG, false)
       next()
       return
     }
     store.commit(types.LOADING_FLAG, true)
-    if (query === '搜索') {
+    if (tag === '') {
       store.commit(types.LOADING_FLAG, false)
-      store.commit(types.NET_STATUS, '')
+      store.commit(types.NET_STATUS, 'error')
       next()
       return
     }
-    search(query, 9, 0).then((searchData) => {
+    getTagData(tag, 9, 0).then((tagData) => {
       // 成功则commit后台接口的数据，并把NET_ERROR的数据置空，并把加载中的状态置为false。
-      console.log(searchData)
-      store.commit(types.SEARCH_DATA, Object.assign(store.state.search.searchData,
-        {[query]: searchData}
+      console.log(tagData)
+      store.commit(types.SEARCH_DATA, Object.assign(store.state.tagList.tagData,
+        {[tag]: tagData}
       ))
       store.commit(types.LOADING_FLAG, false)
       store.commit(types.NET_STATUS, '')

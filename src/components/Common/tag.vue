@@ -1,6 +1,8 @@
 <template>
   <div class="tag">
-    {{tag}}
+    <router-link :to="`/tagList/${tag}`">
+      {{tag}}
+    </router-link>
   </div>
 </template>
 
@@ -22,5 +24,4 @@
     padding: 0.07rem 0.3rem;
     border-radius: 0.3rem;
   }
-
 </style>

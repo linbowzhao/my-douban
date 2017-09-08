@@ -4,6 +4,7 @@ import home from './routers/home'
 import movieDetail from './routers/movieDetail'
 import moreMovie from './routers/moreMovie'
 import search from './routers/search'
+import tagList from './routers/tagList'
 import store from '../store'
 import * as types from './../store/mutation-types'
 
@@ -15,7 +16,8 @@ const router = new Router({
     home,
     movieDetail,
     moreMovie,
-    search
+    search,
+    tagList
   ]
 })
 
