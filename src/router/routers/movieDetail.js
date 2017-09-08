@@ -22,7 +22,7 @@ export default {
       store.commit(types.CURRENT_MOVIE, currentMovie)
       return comments(movieId, 5, 0)
     }).then((comments) => {
-      store.commit(types.CURRENT_COMMENTS, comments)
+      store.commit(types.CURRENT_COMMENTS, {[movieId]: comments})
       console.log(comments)
       store.commit(types.LOADING_FLAG, false)
       store.commit(types.NET_STATUS, '')

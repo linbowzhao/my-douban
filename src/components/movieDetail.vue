@@ -58,12 +58,19 @@
       Comment
     },
 
+    data () {
+      return {
+        scrollFlag: false
+      }
+    },
+
     computed: mapState({
       currentMovie (state) {
         return state.movieDetail.currentMovie
       },
       comments (state) {
-        return state.movieDetail.comments
+        // 这么写的原因是因为如果里面的参数没有更新，即使store里的数据发生了变化，也是不会改变的，也就是说computed只能监视浅层次的数据
+        return this.scrollFlag ? state.movieDetail.comments[this.movieId] : state.movieDetail.comments[this.movieId]
       },
       movieId () {
         return this.$route.params.movieId
@@ -85,7 +92,42 @@
           this.currentMovie.countries.join(',') + ')' + '上映'
         return str
       }
-    })
+    }),
+
+    created () {
+      window.addEventListener('scroll', this.bottomScroll)
+    },
+
+    destroyed () {
+      window.removeEventListener('scroll', this.bottomScroll)
+    },
+
+    methods: {
+      myScroll () {
+        var count = this.comments.count || this.comments.subjects.length
+        var movieId = this.movieId
+        count = count + 5
+        if (this.comments.total && count < this.comments.total) {
+          if (!this.scrollFlag) {
+            this.scrollFlag = true
+            this.$store.dispatch('moreComments', {movieId: movieId, count: count, start: 0})
+            console.log(this.$store.state.movieDetail.comments)
+            setTimeout((that) => { that.scrollFlag = false }, 500, this)
+          }
+        }
+      },
+      bottomScroll () {
+        var top = document.documentElement.scrollTop
+        if (top === 0) {
+          top = document.body.scrollTop
+        }
+        var height = document.getElementById('app').clientHeight
+        var innerHeight = window.innerHeight
+        if ((top + innerHeight) / height > 0.6) {
+          this.myScroll()
+        }
+      }
+    }
   }
 </script>
 <style scoped>
