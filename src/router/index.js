@@ -5,6 +5,7 @@ import movieDetail from './routers/movieDetail'
 import moreMovie from './routers/moreMovie'
 import search from './routers/search'
 import tagList from './routers/tagList'
+import netError from './routers/netError'
 import store from '../store'
 import * as types from './../store/mutation-types'
 
@@ -17,7 +18,8 @@ const router = new Router({
     movieDetail,
     moreMovie,
     search,
-    tagList
+    tagList,
+    netError
   ]
 })
 

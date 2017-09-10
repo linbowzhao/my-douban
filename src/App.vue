@@ -9,12 +9,14 @@
 <script>
   import { mapState } from 'vuex'
   import Loading from './components/Loading'
+  import NetError from './components/netError'
 
   export default {
     name: 'App',
 
     components: {
-      Loading
+      Loading,
+      NetError
     },
 
     created () {

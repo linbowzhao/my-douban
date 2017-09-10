@@ -16,6 +16,8 @@ export default {
   component: home,
   beforeEnter: (to, before, next) => {
     document.title = '豆瓣-电影'
+    console.log('home')
+    store.commit(types.NET_STATUS, '')
     if (Object.keys(store.state.home.homeData).length !== 0) {
       store.commit(types.LOADING_FLAG, false)
       next()
